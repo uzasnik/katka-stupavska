@@ -1,5 +1,5 @@
 <nav class="main-nav" data-content-field="navigation">
-    <div class="nav-wrapper">
+    <div class="nav-wrapper">.
       <ul class="cf">
       {.repeated section items}
 
