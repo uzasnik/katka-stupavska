@@ -1,0 +1,65 @@
+{.section collection}
+  <div id="fullscreenBrowser" class="galleryWrapper">
+    <div class="slideshow main">
+      {.repeated section collections}
+          <div class="slide content-fill" data-slide-id="{id}" data-slide-url="{urlId}">
+
+            {.section mainImage}
+            <img class="loading" {@|image-meta}
+              {.if colorData}
+              data-color-topleft="#{colorData.topLeftAverage}"
+              data-weight-topleft="{colorData.topLeftAverage|color-weight}"
+              {.end}
+              data-load="false"/>
+            {.or}
+              {.section items.0}
+                {.video?}
+                  {@|video load-false color-data}
+                {.end}
+                {.image?}
+                  <img class="loading" {@|image-meta}
+                    {.if colorData}
+                    data-color-topleft="#{colorData.topLeftAverage}"
+                    data-weight-topleft="{colorData.topLeftAverage|color-weight}"
+                    {.end}
+                    data-load="false"/>
+                {.end}
+              {.end}
+            {.end}
+
+            <div id="loading-indicator" class="sqs-spin visible">
+              <div class="sqs-spin-content"></div>
+            </div>
+
+            <div class="index-overlay"></div>
+            <div class="collection-detail-wrapper">
+                <a href="{fullUrl}"><span class="folder-title">{collection.title}</span><span class="folder-separator">&nbsp;/&nbsp;</span><span class="collection-title">{navigationTitle}</span></a>
+            </div>
+
+          </div>
+      {.end}
+    </div>
+
+    <script>
+      Y.use('squarespace-ui-base', function(Y) {
+        Y.all(".collection-detail-wrapper a").each(function(node) { 
+          node.plug(Y.Squarespace.TextShrink, {
+            triggerWidth: 768
+          });
+        });
+      });
+    </script>
+            
+    
+    <div class="nav-projects">
+      <div class="arrow-wrapper left">
+        <a class="nav-button prev-slide" data-direction="L"></a>
+      </div>
+      <div class="arrow-wrapper right">
+        <a class="nav-button next-slide" data-direction="R"></a>
+      </div>
+    </div>
+
+  </div>
+
+{.end}

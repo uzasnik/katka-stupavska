@@ -1,0 +1,195 @@
+
+@import "sqs-ui-font";
+ 
+// SQUARESPACE TWEAK OPTIONS
+ 
+/***************
+   Gallery 
+****************/
+// tweak: { "category" : "Site", "type" : "color", "title" : "Background", "target" : "body", "showOnlyWhenPresent" : "body:not(.collection-type-index)" }
+@siteBackground: #ffffff;
+
+// tweak: { "category" : "Site", "type" : "image", "title" : "Page Background Image", "target" : "body", "showOnlyWhenPresent" : "body:not(.collection-type-index):not(.collection-type-gallery)" }
+.bg-image {
+  background-image: none; 
+  background-position: center center; 
+  background-size: cover; 
+  background-attachment: fixed;  
+  background-repeat: no-repeat;
+}
+
+// tweak: { "category" : "Index", "type" : "dropdown", "title" : "Index Transition", "options" : [ "Slide", "Fade" ], "default" : "Slide", "target" : "#page", "js" : "true", "showOnlyWhenPresent" : ".collection-type-index" }
+
+// tweak: { "category" : "Index", "type" : "checkbox", "title" : "Hide Arrows", "active" : "false", "target" : "#page", "showOnlyWhenPresent" : ".collection-type-index" }
+
+// tweak: { "category" : "Index", "type" : "checkbox", "title" : "Hide Folder Title", "active" : "false", "target" : ".sqs-active-slide .collection-detail-wrapper", "showOnlyWhenPresent" : ".collection-type-index" }
+
+// tweak: { "category" : "Index", "type" : "checkbox", "title" : "Auto Play", "active" : "false", "target" : "#page", "js" : "true", "showOnlyWhenPresent" : ".collection-type-index" }
+
+// tweak: { "category" : "Index", "type" : "value", "title" : "Auto Play Delay", "target" : "#page", "showOnlyWhenPresent" : ".collection-type-index", "min" : 0, "max" : 10, "step" : 0.1, "js" : "true" }
+@galleryAutoPlayDelay: 2;
+
+// tweak: { "category" : "Index", "type" : "checkbox", "title" : "Slides Click Through", "active" : "false", "target" : "#page", "js" : "true", "showOnlyWhenPresent" : ".collection-type-index" }
+
+// tweak: { "category" : "Gallery", "type" : "dropdown", "title" : "Lightbox Transition", "options" : [ "Slide", "Fade" ], "default" : "Slide", "target" : "#page", "js" : "true", "showOnlyWhenPresent" : ".collection-type-gallery" }
+
+/*****************
+  Non-Gallery 
+*****************/
+
+// tweak: { "category" : "Site", "type" : "value", "title" : "Content Width", "min" : 400, "max" : 1200, "step" : 10, "showOnlyWhenPresent" : "body:not(.collection-type-index):not(.collection-type-gallery) #mainContent" }
+@contentWidth: 900px;
+
+//Off tweak: { "type" : "value", "title" : "Site Padding", "min" : 10, "max" : 100, "step" : 10, "target" : "#mainContent" }
+@sitePadding: 50px;
+
+// tweak: { "category" : "Site", "type" : "dropdown", "title" : "Content Alignment", "options" : [ "Left", "Center" ], "default" : "Center", "showOnlyWhenPresent" : "body:not(.collection-type-index):not(.collection-type-gallery) #mainContent" }
+
+
+/************** 
+  Site Header 
+***************/
+
+/* Site Title */
+// tweak: { "category" : "Header", "type" : "font", "title" : "Site Title", "target" : "#header .logo a", "showOnlyWhenPresent" : ".logo-text" }
+.site-title-font {
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+// tweak: { "category" : "Header", "type" : "font", "title" : "Tagline", "target" : "#header h2.logo-subtitle", "showOnlyWhenPresent" : ".logo-subtitle" }
+.tagline-font {
+  font-family:  Arial, verdana, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.3em;
+}
+
+// tweak: { "category" : "Header", "type" : "value", "title" : "Logo Image Max-Height", "min" : 10, "max" : 150, "step" : 10, "showOnlyWhenPresent" : ".logo-image", "target" : ".logo-image img" }
+@logoHeight: 200px;
+
+/* Navigation */
+// tweak: { "category" : "Header", "type" : "font", "title" : "Navigation", "target" : ".main-nav li a" }
+.nav-font {
+  font-family:  Arial, verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0px;
+}
+
+// tweak: { "category" : "Header", "type" : "checkbox", "title" : "Hide Folder Symbol", "active" : "false", "target" : "#header .main-nav .folder" }
+
+/* Headings */
+// tweak: { "category" : "Typography", "type" : "color", "title" : "Headings Color", "target" : "body:not(.collection-type-index):not(.collection-type-gallery) #mainContent h1, body:not(.collection-type-index):not(.collection-type-gallery) #mainContent h2, body:not(.collection-type-index):not(.collection-type-gallery) h3, .entry-title a" }
+@headingsColor: #222222;
+
+// tweak: { "category" : "Index", "type" : "font", "title" : "Collection Title", "target" : ".sqs-active-slide .collection-detail-wrapper", "showOnlyWhenPresent" : ".collection-detail-wrapper" }
+.collection-detail-font {
+  font-family: Arial, verdana, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+// tweak: { "category" : "Typography", "type" : "font", "title" : "Headings", "target" : "h1, h2:not(.logo-subtitle), h3" }
+.headings-font {
+  font-family: Arial, verdana, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+}
+
+
+/************
+  Body Tweaks 
+************/
+// tweak: { "category" : "Typography", "type" : "color", "title" : "Body Text Color", "target" : "#mainContent p" }
+@bodyTextColor: #333333;
+
+// tweak: { "category" : "Typography", "type" : "font", "title" : "Body Text", "target" : "#mainContent p", "loadAllVariants" : "true" }
+.body-font {
+  font-family: Arial, verdana, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.6em;
+  letter-spacing: 0px;
+}
+
+/* Links */
+// tweak: { "category" : "Typography", "type" : "color", "title" : "Body Link Color" }
+@bodyLinkColor: #222222;
+
+// tweak: { "category" : "Typography", "type" : "color", "title" : "Body Link Hover Color" }
+@bodyLinkHoverColor: #222222;
+
+// tweak: { "category" : "Typography", "type" : "checkbox", "title" : "Underline Body Links", "active" : "false", "target" : ".sqs-block a" }
+
+// tweak: { "category" : "Typography", "type" : "font", "title" : "Quote Block" }
+.quote-font {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6em;
+  text-transform: none;
+}
+
+/* Blog */
+//Off tweak: { "category" : "Blog", "type" : "value", "title" : "Post Spacing", "min" : 0, "max" : 200, "showOnlyWhenPresent" : ".collection-type-blog, .collection-type-blog article" }
+@blogPostSpacing: 100px;
+
+// tweak: { "category" : "Blog", "type" : "checkbox", "title" : "Show Author Name", "active" : "false", "showOnlyWhenPresent" : ".collection-type-blog article" }
+
+// tweak: { "category" : "Blog", "type" : "dropdown", "title" : "Sidebar Position", "options" : [ "Right", "Left", "Hidden" ], "target" : ".collection-type-blog #mainContent, .collection-type-page #mainContent", "showOnlyWhenPresent" : ".collection-type-blog" }
+
+// tweak: { "category" : "Blog", "type" : "value", "title" : "Sidebar Width", "min" : 50, "max" : 700, "step" : 5, "target" : "#sidebarWrapper", "showOnlyWhenPresent" : ".collection-type-blog" }
+@blogSidebarWidth: 270px;
+
+//Off tweak: { "category" : "Blog", "type" : "value", "title" : "Sidebar Spacing", "min" : 0, "max" : 150, "step" : 5, "target" : ".collection-type-blog #mainContent", "showOnlyWhenPresent" : ".collection-type-blog" }
+@blogSidebarPadding: 50px;
+
+// tweak: { "category" : "Social Icons", "type" : "value", "title" : "Social Icon Size", "min" : 16, "max" : 48, "target" : "#sqs-social a", "showOnlyWhenPresent" : "#sqs-social" }
+@socialIconSize: 20px;
+
+// tweak: { "category" : "Social Icons", "type" : "checkbox", "title" : "Show Social Icons", "active" : "false", "target" : "#header", "showOnlyWhenPresent" : "#sqs-social" }
+
+// tweak: { "category" : "Social Icons", "type" : "dropdown", "title" : "Social Icon Style", "options" : [ "Normal", "Square", "Round" ], "default" : "Normal", "target" : "#sqs-social a", "showOnlyWhenPresent" : "#sqs-social" }
+
+
+/* Products 
+---------------------------------------------------*/
+
+// tweak: { "type" : "checkbox", "title" : "Show Category Navigation", "active" : "false", "target" : ".pageWrapper, #categoryNav", "showOnlyWhenPresent" : ".collection-type-products", "category" : "Products" }
+
+// tweak: { "type" : "font", "title" : "Category Nav Font", "target" : ".pageWrapper, #categoryNav", "category" : "Products", "showOnlyWhenPresent" : ".collection-type-products.show-category-navigation" }
+.category-nav-font {
+  font-family: "futura-pt";
+  font-size: 15px;
+  text-transform: none;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+// tweak: { "type" : "color", "title" : "Category Nav Color", "target" : ".pageWrapper, #categoryNav", "category" : "Products", "showOnlyWhenPresent" : ".collection-type-products.show-category-navigation" }
+@categoryNavColor: #666666;
+
+// tweak: { "type" : "color", "title" : "Category Nav Active Color", "target" : ".pageWrapper, #categoryNav", "category" : "Products", "showOnlyWhenPresent" : ".collection-type-products.show-category-navigation" }
+@categoryNavActiveColor: #111111;
+
+/********************* END TWEAKS ***********************************/
+

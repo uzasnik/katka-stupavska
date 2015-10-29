@@ -1,0 +1,61 @@
+<div id="fullscreenBrowser" class="galleryWrapper">
+
+  <div class="slideshow stacked">
+    {.repeated section items}
+      <div class="slide" data-slide-id="{id}" data-slide-url="{urlId}">
+        <div class="sqs-lightbox-padder content-fit">
+        {.image?}<img {@|image-meta}
+          {.if colorData}
+          data-color-topleft="#{colorData.topLeftAverage}"
+          {.end}
+          data-load="false" data-image-stretch="false" class="loading"/>{.end}
+        {.video?}{@|video load-false color-data}{.end}
+
+        <div class="sqs-spin visible">
+          <div class="sqs-spin-content"></div>
+        </div>
+
+        </div>
+      </div>
+    {.end}
+  </div>
+
+  <div class="slideshow strip main">
+    {.repeated section items}
+      <div class="slide" data-slide-id="{id}" data-slide-url="{urlId}"
+      {.if colorData}
+      data-weight-topright="{colorData.topRightAverage|color-weight}"
+      {.end}>
+
+        {.image?}<img {@|image-meta} 
+          data-load="false" class="loading"
+          data-image-stretch="false" 
+          data-click-through-url="{clickthroughUrl}"
+          />{.end}
+        {.video?}{@|video}{.end}
+        <div class="sqs-spin visible">
+          <div class="sqs-spin-content"></div>
+        </div>
+        <div class="ctrl-button resize"><a class="icon-resize">+</a></div>
+
+        <div class="image-detail-wrapper">
+          <div class="image-title">{title}</div>
+          <div class="image-description">{body}</div>
+        </div>
+      </div>
+    {.end}
+  </div>
+
+  <ul class="nav-projects">
+    <div class="arrow-wrapper left">
+      <a class="nav-button prev-slide" data-direction="L"></a>
+    </div>
+    <div class="arrow-wrapper right">
+      <a class="nav-button next-slide" data-direction="R"></a>
+    </div>
+  </ul>
+
+  <div class="ctrl-button close"><a class="icon-close"></a></div>
+
+</div>
+

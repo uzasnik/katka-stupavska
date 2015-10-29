@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+{.if template.mobileStylesEnabled}
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+{.end}
+
+{squarespace-headers}
+
+</head>
+{.if template.mobileStylesEnabled}{.or}<!-- Mobile Styles Disabled -->{.end}
+<body id="{squarespace.page-id}" class="{squarespace.page-classes} page-{collection.urlId}{.if template.mobileStylesEnabled}{.or} no-mobile-styles{.end}">
+  <div class="sqs-announcement-bar-dropzone"></div><!--Fixes index page loading issue when announcement bar is enabled -->
+
+  <div id="canvasWrapper">
+
+    <div id="canvas">
+      <div id="headerWrapper">
+
+        {.section website}
+        <header id="header">
+          <div class="wrapper">
+            <div id="logo" data-content-field="site-title">
+            {.if logoImageUrl}
+              <h1 class="logo logo-image">
+                <a href="/"><img src="{logoImageUrl}?format=1500w" alt="{siteTitle}" /></a>
+              </h1>
+            {.or}
+              <h1 class="logo logo-text"><a href="/">{siteTitle}</a></h1>
+            {.end}
+
+            <script>
+              Y.use('squarespace-ui-base', function(Y) {
+                Y.one(".logo a").plug(Y.Squarespace.TextShrink, {
+                  parentEl: Y.one('#header'),
+                  triggerWidth: 768
+                });
+              });
+            </script>
+
+            {.section siteTagLine}
+              <h2 class="logo-subtitle">{@}</h2>
+            {.end}
+            </div>
+
+            <span class="ctrl-button menu"><a class="icon-hamburger"></a></span>
+
+            <div id="topNav">
+              <squarespace:navigation navigationId="mainNav" template="navigation" />
+              {.if socialAccounts}
+              <div id="sqs-social" data-content-field="connected-accounts">
+                {.repeated section socialAccounts}{.if profileUrl}<a href="{profileUrl}" target="_blank" title="{screenname}" class="social-{serviceName}"></a>{.end}{.end}
+              </div>
+              {.end}
+            </div>
+        </div>
+        </header>
+        {.end}
+
+        {.if template.mobileStylesEnabled}
+          <nav id="mobile-navigation">
+            <squarespace:navigation navigationId="mainNav" template="navigation-mobile" />
+            {.section website}
+            {.if socialAccounts}
+            <div id="sqs-social">
+              {.repeated section socialAccounts}{.if profileUrl}<a href="{profileUrl}" target="_blank" title="{screenname}" class="social-{serviceName}"></a>{.end}{.end}
+            </div>
+            {.end}
+
+            <div id="mobile-location">
+              <div>{location.addressTitle}</div>
+              <div>{location.addressLine1}</div>
+              <div>{location.addressLine2}</div>
+              <div>{location.addressCountry}</div>
+              <div>{websiteSettings.contactPhoneNumber}</div>
+            </div>
+            
+            {.end}
+          </nav>
+        {.end}
+      </div>
+
+      <div class="pageWrapper">
+        <section id="page">
+          <div id="mainContent" role="main" data-content-field="main-content">
+
+            {.section collection}{.equal? typeName "products"}{.section categories}
+            <div id="categoryNav">
+              <input type="checkbox" name="category-nav-toggle" id="categoryNavToggle" class="category-nav-toggle hidden" />
+              <label for="categoryNavToggle" class="category-nav-toggle-label" onclick></label>
+              <nav class="category-nav">
+                <ul class="category-nav-links">
+                  <li class="filter"><a>Filter{.if categoryFilter}: {categoryFilter}{.end}</a></li>
+                  <li{.if categoryFilter}{.or} class="active-link all"{.end}><a href="{fullUrl}">All</a></li>
+                  {.repeated section @}
+                  <li{.equal? categoryFilter @} class="active-link"{.end}><a href="{fullUrl}?category={@|url-encode}">{@}</a></li>
+                  {.end}
+                </ul>
+              </nav>
+            </div>
+            {.end}{.end}{.end}
+            
+            {squarespace.main-content}
+            
+          </div>
+
+          {.section collection}
+          {.collectionTypeNameEquals? blog}
+          <aside id="sidebarWrapper"><div id="sidebar">
+            <squarespace:block-field id="sidebarBlocks" label="Sidebar Content" />
+          </div></aside>
+          {.end}
+          {.end}
+        </section>
+
+        {.section collection}
+        {.collectionTypeNameEquals? index}
+        {.or}{.collectionTypeNameEquals? gallery}
+        {.or}
+        <footer id="footer">
+            <div class="footer-container">
+              <squarespace:block-field id="footerBlock" columns="12" label="Footer Content" />
+            </div>
+        </footer>
+        {.end}
+        {.end}
+        {.end}
+      </div>
+    </div>
+  </div>
+
+<squarespace:script src="site.js" combo="true" />
+{squarespace-footers}
+
+</body>
+</html>
+

@@ -1,0 +1,98 @@
+{.section categoryFilter}
+<p class="active-filter category-filter"><span class="active-filter-label"><strong>{@|safe}</strong></span></p>
+{.end}
+
+{.section tagFilter}
+<p class="active-filter tag-filter"><span class="active-filter-label"><strong>{@|safe}</strong></span></p>
+{.end}
+
+{.if authorFilter}
+<p class="active-filter author-filter"><span class="active-filter-label"><strong>{author.displayName|safe}</strong></span></p>
+{.end}
+
+<div class="article-list hfeed">
+
+{.repeated section items}
+
+<article class="{@|item-classes}" id="article-{id}" data-item-id="{id}">
+
+  <!--POST BODY-->
+
+  <h1 data-content-field="title" class="entry-title">
+    {.passthrough?}
+      <a href="{sourceUrl}">{title}</a>
+    {.or}
+      <a href="{fullUrl}">{title}</a>
+    {.end}
+    <span class="date">/&nbsp;<time class="published" datetime="{addedOn|date %F}">{addedOn|date %B %e, %Y}</time></span>
+    <span class="author">by <a href="?author={author.id}">{author.displayName}</a></span>
+  </h1>
+
+  {.excerpt?}
+    <div class="body entry-content">{excerpt} <a class="read-more" href="{fullUrl}">Read More</a></div>
+  {.or}
+    <div class="body entry-content">
+      {.section body}{@}{.end}
+    </div>
+  {.end}
+
+  <!--POST FOOTER-->
+
+  <footer>
+    <div class="meta">
+      <div class="entry-info">
+
+        {.section sourceUrl}<span class="attribution"><a href="{sourceUrl}" class="source-link" target="_blank">{sourceUrl}</a></span>{.end}
+
+        {.if categories}<span class="category">{.repeated section categories}<a href="{collection.fullUrl}?category={@}" class="author-link" rel="tag">{@}</a>{.alternates with}, {.end}</span>{.end}
+
+        {.section tags}<span class="tags">{.repeated section @}<a href="{collection.fullUrl}?tag={@|url-encode}#show-archive" rel="tag">{@}</a>{.alternates with}, {.end}</span>{.end}
+
+        <span class="updated"><a href="{fullUrl}" title="Permalink" class="permalink"><time datetime="{updatedOn|date %F}">{updatedOn|date %B %d, %Y}</time></a></span>
+
+      </div>
+      <div class="info">
+        
+        <div class="comments-social-like">
+          {.comments?}
+            {.disqus?}
+              <span class="comments"><a href="{fullUrl}#comments-{id}">Leave a Comment</a></span>
+            {.or}
+              {.section publicCommentCount}
+                <span class="comments"><a href="{fullUrl}#comments-{id}">{@} Comment{@|pluralize}</a></span>
+              {.or}
+                <span class="comments"><a href="{fullUrl}#comments-{id}">Comment</a></span>
+              {.end}
+            {.end}
+          {.end}
+          {@|like-button}
+          {@|social-button-inline}
+        </div>
+      </div>
+    </div>
+    {postItemInjectCode}
+  </footer>
+
+
+  </article>
+{.alternates with}
+  <div class="post-divider"></div>
+{.end}
+
+</div>
+
+
+
+<!--PAGINATION-->
+
+{.if pagination}
+  <nav class="pagination">
+    {.if pagination.prevPage}
+      <a href="{pagination.prevPageUrl}" class="prev-item">&larr; Newer</a>
+    {.end}
+    {.if pagination.nextPage}
+      <a href="{pagination.nextPageUrl}" class="next-item">Older &rarr;</a>
+    {.end}
+  </nav>
+{.end}
+

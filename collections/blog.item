@@ -1,0 +1,78 @@
+{.section item}
+
+<article class="{@|item-classes}" id="article-{id}" data-item-id="{id}">
+
+  <!--POST HEADER-->
+
+  <header>
+  </header>
+
+  <!--POST BODY-->
+
+  <h1 data-content-field="title" class="entry-title">
+    {.passthrough?}
+      <a href="{sourceUrl}">{title}</a>
+    {.or}
+      <a href="{fullUrl}">{title}</a>
+    {.end}
+    <span class="date">/<time class="published" datetime="{addedOn|date %F}">{addedOn|date %B %e, %Y}</time></span>    
+    <span class="author">by <a href="{collection.fullUrl}?author={author.id}">{author.displayName}</a></span>
+  </h1>
+
+  <div class="body entry-content">
+    {.section body}{@}{.end}
+    {.passthrough?}{.or}{.section sourceUrl}<div class="entry-source">Source: <a href="{sourceUrl}" target="_blank">{sourceUrl|truncate 42}</a></div>{.end}{.end}
+  </div>
+
+  <!--POST FOOTER-->
+
+  <footer>
+    <div class="meta">
+      <div class="grouping">
+        {.if categories}<span class="categories-title">Posted in </span><span class="category">{.repeated section categories}<a href="{collection.fullUrl}?category={@}" class="author-link" rel="tag">{@}</a>{.alternates with}, {.end}</span>{.end}
+        </span>
+      {.section tags}
+        &nbsp;
+        <span class="tags">
+          <span class="tags-title">Tags:</span>
+          {.repeated section @}<a href="{collection.fullUrl}?tag={@|url-encode}" rel="tag">{@}</a>{.alternates with}, {.end}
+        </span>
+      {.end}
+      </div>
+      <div class="info">
+
+        <div class="comments-social-like">
+          {@|like-button}
+          {@|social-button-inline}
+        </div>        
+      </div>
+    </div>
+  {postItemInjectCode}
+
+  </footer>
+
+  <!-- COMMENTS -->
+
+  <section id="comments-{id}" class="comments-wrapper">
+    {@|comments}
+  </section>
+
+
+  </article>
+{.end}
+
+
+<!--PAGINATION-->
+
+{.section pagination}
+  <nav class="pagination clear">
+    {.section prevItem}
+      <a class="prev-item" href="{fullUrl}"><span>&larr; </span><span class="pagination-title">{title}</span></a>
+    {.end}
+    {.section nextItem}
+      <a class="next-item" href="{fullUrl}"><span class="pagination-title">{title}</span><span> &rarr;</span></a>
+    {.end}
+  </nav>
+{.end}
+
+
