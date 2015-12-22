@@ -701,16 +701,6 @@ Y.use('node', 'squarespace-gallery-ng', function(Y) {
         break;
       }
 
-      // if the wrapper is bigger than the container,
-      // center the strip.
-      if (wrapperWidth < containerWidth) {
-        slideOffset = (containerWidth - 35 - wrapperWidth) / -2;
-        Y.one('body').addClass('nav-disabled');
-      } else {
-        Y.one('body').removeClass('nav-disabled');
-        // slideOffset = (wrapperWidth - containerWidth);
-      }
-
       // set the wrapper element to twice what it needs to be, it doesn't really matter.
       // plus, twice is always better.
       wrapperEl.setStyles({
